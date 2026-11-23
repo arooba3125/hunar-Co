@@ -1,14 +1,18 @@
-import { siteConfig } from "@/lib/site-config";
+import { Hero } from "@/features/home/hero";
+import { HowItWorks } from "@/features/home/how-it-works";
+import { FeaturedDesigns } from "@/features/home/featured-designs";
+import { FeaturedCreators } from "@/features/home/featured-creators";
+import { AudienceActions } from "@/features/home/audience-actions";
 
-// Home page placeholder. The real design comes in a later stage.
+// The home page is built from sections in src/features/home/.
 export default function HomePage() {
   return (
-    <section className="mx-auto max-w-3xl px-6 py-24 text-center">
-      <h1 className="text-4xl font-semibold tracking-tight">{siteConfig.name}</h1>
-      <p className="mt-4 text-lg text-foreground/70">{siteConfig.tagline}</p>
-      <p className="mt-10 text-sm text-foreground/50">
-        Project foundation is running. Pages are coming soon.
-      </p>
-    </section>
+    <>
+      <Hero />
+      <HowItWorks />
+      <FeaturedDesigns />
+      <FeaturedCreators />
+      <AudienceActions />
+    </>
   );
 }

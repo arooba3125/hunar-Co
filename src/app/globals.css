@@ -1,18 +1,90 @@
 @import "tailwindcss";
 
-/* Site-wide colours. Change these to restyle the whole site. */
-:root {
-  --background: #fdfaf5;
-  --foreground: #1f1a17;
+/*
+  HunarCo design system
+  ---------------------
+  Every colour, font, spacing step and corner radius used on the site is
+  defined here once. Tailwind turns each token into utility classes, e.g.
+  --color-brand    -> bg-brand, text-brand, border-brand
+  --font-display   -> font-display
+  --spacing-section-> py-section
+  --container-site -> max-w-site
+  --radius-card    -> rounded-card
+  Change a value here and it updates everywhere.
+*/
+
+@theme {
+  /* Colours: warm paper, ink, and pigments drawn from block-printed textiles */
+  --color-paper: #faf5ec; /* page background */
+  --color-surface: #fffdf8; /* cards and raised panels */
+  --color-sand: #f0e5d3; /* soft section backgrounds */
+  --color-line: #e2d4bf; /* borders and dividers */
+  --color-ink: #1e1915; /* main text */
+  --color-muted: #6b5e52; /* secondary text */
+  --color-brand: #9e3b26; /* terracotta red: primary actions */
+  --color-brand-dark: #7c2c1b; /* hover state for brand */
+  --color-deep: #1e3550; /* indigo: dark sections, accents */
+  --color-accent: #d4962a; /* turmeric: small highlights only */
+  --color-sage: #6e7b5b; /* supporting accent */
+
+  /* Typography: an editorial serif for headings, a clean sans for reading */
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), system-ui, -apple-system, "Segoe UI", Arial,
+    sans-serif;
+
+  /* Large display size that scales smoothly with screen width */
+  --text-display: clamp(2.5rem, 1.6rem + 4vw, 4.75rem);
+  --text-display--line-height: 1.05;
+  --text-title: clamp(1.875rem, 1.4rem + 2vw, 3rem);
+  --text-title--line-height: 1.1;
+
+  /* Spacing: vertical rhythm between page sections, and page gutters */
+  --spacing-section: clamp(4rem, 3rem + 5vw, 7.5rem);
+  --spacing-gutter: clamp(1.25rem, 0.75rem + 2.5vw, 2.5rem);
+
+  /* Widest the page content gets */
+  --container-site: 76rem;
+
+  /* Corner radii */
+  --radius-control: 999px; /* buttons, pills */
+  --radius-card: 1.25rem; /* cards */
+  --radius-media: 1rem; /* images and placeholders */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-}
+/* Base element styles. Kept in the "base" layer so Tailwind classes can override them. */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Keeps anchored sections from hiding under the sticky header */
+    scroll-padding-top: 5rem;
+  }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
 }
