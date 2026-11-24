@@ -20,10 +20,10 @@ export function Hero() {
             design reaches its goal, HunarCo may help bring it into production.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href="/#featured-designs" size="lg">
+            <ButtonLink href="/discover" size="lg">
               Explore designs
             </ButtonLink>
-            <ButtonLink href="/#for-creators" size="lg" variant="secondary">
+            <ButtonLink href="/join-as-creator" size="lg" variant="secondary">
               I&rsquo;m a creator
             </ButtonLink>
           </div>

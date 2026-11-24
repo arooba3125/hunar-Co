@@ -48,6 +48,21 @@ Warm, editorial, and focused on the makers. The palette draws on block-printed t
 - `SectionHeading`: eyebrow, title, and description, with `align` and `tone` options.
 - `ImagePlaceholder`: patterned stand-in for photos. Replace with `next/image` once real images are in `public/images/`.
 
+## Form controls (`src/components/ui/form-fields.tsx`)
+
+- `TextField`, `TextAreaField`, `SelectField`, `CheckboxField`: each takes `id`, `label`, optional `hint` and `error`, and links them for screen readers.
+- `FormAlert`: `tone="error"` for the "Please fix N fields" summary, `tone="success"` for confirmations.
+- Pattern used by both forms: validate on submit, show a summary plus per-field messages, move focus to the first invalid field, and clear a field's error as soon as it is edited.
+
+## Product components (`src/features/products/`)
+
+- `ProductCard`: a design in a grid.
+- `InterestProgress`: progress bar with "current of target" text. Turns sage green at 100%.
+- `StatusBadge`: launch status pill (Collecting interest, Closing soon, Target reached, Closed).
+- `CategoryButtons`, `SearchField`, `SortSelect`: catalogue controls.
+- `SampleNotice`: the yellow "Sample" note for placeholder content.
+- Prices always go through `formatPrice()` in `src/lib/format.ts` (e.g. "Rs 14,000"), and dates through `formatDate()`.
+
 ## Breakpoints
 
-Tailwind defaults: `sm` 640px, `md` 768px (the full navigation appears here), `lg` 1024px.
+Tailwind defaults: `sm` 640px, `md` 768px, `lg` 1024px (the full navigation appears here; below it the header shows a menu button).

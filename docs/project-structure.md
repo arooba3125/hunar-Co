@@ -21,7 +21,25 @@ hunar-Co/
 
 **`src/components/`**: Generic, reusable building blocks that could appear on any page. The site header, footer, wordmark, and mobile menu sit at the top level. Small design-system pieces (buttons, container, section heading, image placeholder) live in `src/components/ui/`. See [design-system.md](design-system.md).
 
-**`src/features/`**: Code tied to one HunarCo area. `home/` holds the home page sections and `sample-content.ts`, which is temporary placeholder data. Planned folders are `products/` (designs and interest counts), `creators/` (creator profiles), and `applications/` (creator application form). Create each one when you start that area.
+**`src/features/`**: Code tied to one HunarCo area.
+
+- `home/`: home page sections.
+- `products/`: everything for browsing and viewing designs. It holds `sample-data.ts` (the single source of sample creators and designs, linked by `creatorId`), the product card, interest progress bar, status badge, catalogue filters, gallery, and the demo interest form.
+- `creators/`: creator card, directory filter, portfolio gallery, "Apply to join" banner, and the demo creator application form.
+
+Shared form controls (text field, text area, select, checkbox, alert) live in `src/components/ui/form-fields.tsx`. Form helpers live in `src/lib/validation.ts` and `src/lib/demo-submit.ts`.
+
+## Current pages
+
+| URL | File | What it is |
+| --- | --- | --- |
+| `/` | `src/app/page.tsx` | Home page |
+| `/discover` | `src/app/discover/page.tsx` | Catalogue with filters, search and sorting |
+| `/discover/<slug>` | `src/app/discover/[slug]/page.tsx` | One design. `loading.tsx` and `not-found.tsx` beside it handle loading and unknown designs |
+| `/creators` | `src/app/creators/page.tsx` | Creator directory with a discipline filter |
+| `/creators/<slug>` | `src/app/creators/[slug]/page.tsx` | One creator's profile, portfolio and listings, with its own `loading.tsx` and `not-found.tsx` |
+| `/join-as-creator` | `src/app/join-as-creator/page.tsx` | Who can apply, how review works, and the demo application form |
+| any other URL | `src/app/not-found.tsx` | Site-wide "page not found" |
 
 **`src/lib/`**: Helpers and configuration that aren't UI. `site-config.ts` holds the site name and tagline. The Supabase client will go here later.
 

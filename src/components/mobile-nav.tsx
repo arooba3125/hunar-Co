@@ -12,7 +12,7 @@ type MobileNavProps = {
   action: NavLink;
 };
 
-// Menu button and drop-down panel shown on small screens only.
+// Menu button and drop-down panel shown on phones and tablets (below 1024px).
 export function MobileNav({ links, action }: MobileNavProps) {
   const [open, setOpen] = useState(false);
 
@@ -29,7 +29,7 @@ export function MobileNav({ links, action }: MobileNavProps) {
   const close = () => setOpen(false);
 
   return (
-    <div className="md:hidden">
+    <div className="lg:hidden">
       <button
         type="button"
         onClick={() => setOpen(!open)}

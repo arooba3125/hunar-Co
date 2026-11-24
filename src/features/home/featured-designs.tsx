@@ -1,65 +1,36 @@
+import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { ImagePlaceholder } from "@/components/ui/image-placeholder";
-import { findSampleCreator, sampleDesigns } from "./sample-content";
+import { ProductCard } from "@/features/products/product-card";
+import { getCreatorById, sampleProducts } from "@/features/products/sample-data";
 
-// Shows SAMPLE designs only. See sample-content.ts.
+// Shows the first three featured SAMPLE designs. See features/products/sample-data.ts.
+const featured = sampleProducts.filter((product) => product.featured).slice(0, 3);
+
 export function FeaturedDesigns() {
   return (
     <section id="featured-designs" className="py-section">
       <Container>
-        <SectionHeading
-          eyebrow="Featured designs"
-          title="Pieces looking for their people"
-          description="A preview of how designs will appear. The cards below use sample content."
-        />
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <SectionHeading
+            eyebrow="Featured designs"
+            title="Pieces looking for their people"
+            description="A preview of how designs will appear. The cards below use sample content."
+          />
+          <Link
+            href="/discover"
+            className="text-sm font-medium text-brand underline-offset-4 hover:underline"
+          >
+            See all designs →
+          </Link>
+        </div>
 
-        <ul className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {sampleDesigns.map((design) => {
-            const creator = findSampleCreator(design.creatorId);
-            const percent = Math.min(
-              100,
-              Math.round((design.interestCount / design.interestThreshold) * 100),
-            );
-
-            return (
-              <li key={design.id} className="group">
-                <div className="relative">
-                  <ImagePlaceholder label="Design photo" tone={design.tone} />
-                  <span className="absolute right-3 top-3 rounded-control bg-ink/80 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-paper">
-                    Sample
-                  </span>
-                </div>
-                <h3 className="mt-5 text-xl font-medium">{design.title}</h3>
-                {creator && (
-                  <p className="mt-1 text-sm text-muted">
-                    by {creator.name} · {creator.city}
-                  </p>
-                )}
-
-                {/* Interest progress (sample numbers) */}
-                <div className="mt-4">
-                  <div
-                    className="h-1.5 overflow-hidden rounded-control bg-line"
-                    role="progressbar"
-                    aria-valuemin={0}
-                    aria-valuemax={design.interestThreshold}
-                    aria-valuenow={design.interestCount}
-                    aria-label="Sample interest progress"
-                  >
-                    <div
-                      className="h-full rounded-control bg-brand"
-                      style={{ width: `${percent}%` }}
-                    />
-                  </div>
-                  <p className="mt-2 text-sm text-muted">
-                    {design.interestCount} of {design.interestThreshold}{" "}
-                    interests (sample)
-                  </p>
-                </div>
-              </li>
-            );
-          })}
+        <ul className="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+          {featured.map((product) => (
+            <li key={product.id}>
+              <ProductCard product={product} creator={getCreatorById(product.creatorId)} />
+            </li>
+          ))}
         </ul>
       </Container>
     </section>

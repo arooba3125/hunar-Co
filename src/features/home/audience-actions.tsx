@@ -27,7 +27,7 @@ export function AudienceActions() {
               love. Your interest helps a design reach its production goal.
             </p>
             <div className="mt-8">
-              <ButtonLink href="/#featured-designs" variant="light" size="lg">
+              <ButtonLink href="/discover" variant="light" size="lg">
                 Explore designs
               </ButtonLink>
             </div>
@@ -45,8 +45,7 @@ export function AudienceActions() {
               which pieces people want before you invest in making them.
             </p>
             <div className="mt-8">
-              {/* The application form is a later stage; this link is a placeholder. */}
-              <ButtonLink href="/#for-creators" variant="light" size="lg">
+              <ButtonLink href="/join-as-creator" variant="light" size="lg">
                 Apply to join
               </ButtonLink>
             </div>

@@ -2,9 +2,8 @@
 
 HunarCo-specific sections live here, one folder per area:
 
-- `home/`: home page sections. `sample-content.ts` is temporary placeholder data.
-- `products/` (planned): design listings and interest counts
-- `creators/` (planned): creator profiles
-- `applications/` (planned): creator application form
+- `home/`: home page sections.
+- `products/`: catalogue and product detail pieces. `sample-data.ts` is the single file of temporary sample creators and designs.
+- `creators/`: creator directory, profile pieces, and the creator application form.
 
-Add a folder when you start building that area. Each folder holds its own components and helpers.
+Add a folder when you start building a new area. Each folder holds its own components and helpers.

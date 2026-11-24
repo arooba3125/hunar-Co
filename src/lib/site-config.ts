@@ -9,19 +9,19 @@ export const siteConfig = {
 
 export type NavLink = { label: string; href: string };
 
-// Main navigation. These point to sections of the home page for now;
-// switch them to real routes (e.g. "/designs") once those pages exist.
+// Main navigation. Links starting with "/#" point to sections of the home
+// page; switch them to real routes once those pages exist.
 export const mainNav: NavLink[] = [
-  { label: "Designs", href: "/#featured-designs" },
-  { label: "Creators", href: "/#featured-creators" },
+  { label: "Discover", href: "/discover" },
+  { label: "Creators", href: "/creators" },
   { label: "How it works", href: "/#how-it-works" },
-  { label: "For creators", href: "/#for-creators" },
+  { label: "Join as a creator", href: "/join-as-creator" },
 ];
 
 // The main call to action shown in the header.
 export const primaryAction: NavLink = {
   label: "Explore designs",
-  href: "/#featured-designs",
+  href: "/discover",
 };
 
 // Footer link groups.
@@ -29,8 +29,8 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
   {
     title: "Explore",
     links: [
-      { label: "Designs", href: "/#featured-designs" },
-      { label: "Creators", href: "/#featured-creators" },
+      { label: "Discover designs", href: "/discover" },
+      { label: "Creators", href: "/creators" },
       { label: "How it works", href: "/#how-it-works" },
     ],
   },
@@ -38,7 +38,7 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
     title: "Creators",
     links: [
       { label: "Why HunarCo", href: "/#for-creators" },
-      { label: "Apply to join", href: "/#for-creators" },
+      { label: "Apply to join", href: "/join-as-creator" },
     ],
   },
 ];

@@ -32,6 +32,8 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      // Tells Next.js to switch off smooth scrolling while changing pages
+      data-scroll-behavior="smooth"
       className={`${fraunces.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">

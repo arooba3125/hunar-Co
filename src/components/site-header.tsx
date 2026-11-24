@@ -11,13 +11,13 @@ export function SiteHeader() {
       <Container className="relative flex h-16 items-center justify-between gap-6 md:h-20">
         <Wordmark />
 
-        {/* Desktop and tablet navigation */}
-        <nav aria-label="Main" className="hidden items-center gap-8 md:flex">
+        {/* Desktop navigation (phones and tablets use the menu button instead) */}
+        <nav aria-label="Main" className="hidden items-center gap-8 lg:flex">
           {mainNav.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className="text-sm text-muted transition-colors hover:text-ink"
+              className="whitespace-nowrap text-sm text-muted transition-colors hover:text-ink"
             >
               {link.label}
             </Link>
