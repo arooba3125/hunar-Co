@@ -64,3 +64,67 @@ export interface Product {
   estimatedTimeline: string;
   gallery: GalleryImage[];
 }
+
+// ---------------------------------------------------------------------------
+// Demo accounts and dashboard records (Stage 6).
+// Used only by the frontend demo; a real backend would define these.
+// ---------------------------------------------------------------------------
+
+export type Role = "buyer" | "creator" | "admin";
+
+export type UserStatus = "active" | "invited" | "suspended";
+
+export interface DemoUser {
+  id: string;
+  name: string;
+  /** Fictional address on the reserved .test domain */
+  email: string;
+  role: Role;
+  status: UserStatus;
+  /** ISO date (YYYY-MM-DD) */
+  joinedOn: string;
+  city?: string;
+  /** For creators: which sample creator profile belongs to this account */
+  creatorId?: string;
+  /** True for the accounts listed on the login page */
+  loginable?: boolean;
+}
+
+export interface BuyerInterest {
+  productId: string;
+  quantity: number;
+  /** ISO date (YYYY-MM-DD) */
+  registeredOn: string;
+}
+
+/** Where a creator's design submission is in HunarCo's review */
+export type ReviewStatus = "in-review" | "changes-requested" | "approved" | "rejected";
+
+export interface DesignSubmission {
+  id: string;
+  creatorId: string;
+  title: string;
+  category: Category;
+  pricePkr: number;
+  /** ISO date (YYYY-MM-DD) */
+  submittedOn: string;
+  reviewStatus: ReviewStatus;
+  /** Set once the design is live on /discover */
+  productSlug?: string;
+  /** Feedback from the reviewer */
+  reviewNote?: string;
+}
+
+export type ApplicationStatus = "pending" | "approved" | "rejected";
+
+export interface CreatorApplication {
+  id: string;
+  name: string;
+  city: string;
+  discipline: Category | "other";
+  portfolioUrl: string;
+  summary: string;
+  /** ISO date (YYYY-MM-DD) */
+  submittedOn: string;
+  status: ApplicationStatus;
+}

@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
 import { Wordmark } from "@/components/wordmark";
 import { MobileNav } from "@/components/mobile-nav";
+import { AccountMenu } from "@/features/auth/account-menu";
 
 export function SiteHeader() {
   return (
@@ -12,7 +13,7 @@ export function SiteHeader() {
         <Wordmark />
 
         {/* Desktop navigation (phones and tablets use the menu button instead) */}
-        <nav aria-label="Main" className="hidden items-center gap-8 lg:flex">
+        <nav aria-label="Main" className="hidden items-center gap-6 lg:flex xl:gap-8">
           {mainNav.map((link) => (
             <Link
               key={link.label}
@@ -24,7 +25,11 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
+          {/* Log in link or demo account menu (in the mobile menu on small screens) */}
+          <div className="hidden lg:block">
+            <AccountMenu />
+          </div>
           {/* Hidden on the smallest screens, where it moves into the menu */}
           <div className="hidden sm:block">
             <ButtonLink href={primaryAction.href}>{primaryAction.label}</ButtonLink>

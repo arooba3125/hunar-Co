@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import type { NavLink } from "@/lib/site-config";
 import { ButtonLink } from "@/components/ui/button";
+import { MobileAccountLinks } from "@/features/auth/account-menu";
 
 type MobileNavProps = {
   links: NavLink[];
@@ -60,7 +61,7 @@ export function MobileNav({ links, action }: MobileNavProps) {
       {open && (
         <div
           id="mobile-menu"
-          className="absolute inset-x-0 top-full border-b border-line bg-paper shadow-lg"
+          className="absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-b border-line bg-paper shadow-lg"
         >
           <nav aria-label="Main" className="flex flex-col px-gutter py-4">
             {links.map((link) => (
@@ -73,6 +74,7 @@ export function MobileNav({ links, action }: MobileNavProps) {
                 {link.label}
               </Link>
             ))}
+            <MobileAccountLinks onNavigate={close} />
             <div className="pt-5" onClick={close}>
               <ButtonLink href={action.href} size="lg" className="w-full">
                 {action.label}

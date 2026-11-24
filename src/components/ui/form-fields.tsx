@@ -184,6 +184,69 @@ export function CheckboxField({ id, label, error, checked, onChange }: CheckboxF
   );
 }
 
+type RadioCardGroupProps = {
+  /** Shared name for the radio inputs; also used to build ids */
+  name: string;
+  legend: string;
+  value: string;
+  onChange: (value: string) => void;
+  options: { value: string; label: string; description?: string }[];
+  error?: string;
+};
+
+// A set of radio buttons drawn as selectable cards, grouped in a fieldset.
+// Focus the first option with document.getElementById(`${name}-0`).
+export function RadioCardGroup({
+  name,
+  legend,
+  value,
+  onChange,
+  options,
+  error,
+}: RadioCardGroupProps) {
+  return (
+    <fieldset aria-describedby={error ? `${name}-error` : undefined}>
+      <legend className="text-sm font-medium text-ink">{legend}</legend>
+      <div className="mt-2 grid gap-3 sm:grid-cols-2">
+        {options.map((option, index) => {
+          const id = `${name}-${index}`;
+          const checked = value === option.value;
+          return (
+            <label
+              key={option.value}
+              htmlFor={id}
+              className={`flex cursor-pointer items-start gap-3 rounded-media border p-4 transition-colors has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-brand ${
+                checked ? "border-ink bg-surface" : error ? "border-brand" : "border-line bg-surface/60 hover:border-ink/40"
+              }`}
+            >
+              <input
+                id={id}
+                type="radio"
+                name={name}
+                value={option.value}
+                checked={checked}
+                onChange={() => onChange(option.value)}
+                className="mt-1 h-4 w-4 shrink-0 accent-brand"
+              />
+              <span>
+                <span className="block font-medium">{option.label}</span>
+                {option.description && (
+                  <span className="mt-0.5 block text-sm text-muted">{option.description}</span>
+                )}
+              </span>
+            </label>
+          );
+        })}
+      </div>
+      {error && (
+        <p id={`${name}-error`} className="mt-1.5 text-sm text-brand">
+          {error}
+        </p>
+      )}
+    </fieldset>
+  );
+}
+
 // A message box at the top of a form. "error" is announced to screen readers
 // immediately; "success" is announced politely.
 export function FormAlert({

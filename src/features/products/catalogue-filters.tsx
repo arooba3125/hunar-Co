@@ -55,13 +55,23 @@ export function CategoryButtons({
 type SearchFieldProps = {
   value: string;
   onChange: (value: string) => void;
+  /** Override these to reuse the search box elsewhere (e.g. the admin lists) */
+  id?: string;
+  label?: string;
+  placeholder?: string;
 };
 
-export function SearchField({ value, onChange }: SearchFieldProps) {
+export function SearchField({
+  value,
+  onChange,
+  id = "catalogue-search",
+  label = "Search by design or creator name",
+  placeholder = "Search designs or creators",
+}: SearchFieldProps) {
   return (
     <div className="relative">
-      <label htmlFor="catalogue-search" className="sr-only">
-        Search by design or creator name
+      <label htmlFor={id} className="sr-only">
+        {label}
       </label>
       <svg
         viewBox="0 0 24 24"
@@ -72,11 +82,11 @@ export function SearchField({ value, onChange }: SearchFieldProps) {
         <path d="M20 20l-4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
       </svg>
       <input
-        id="catalogue-search"
+        id={id}
         type="search"
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        placeholder="Search designs or creators"
+        placeholder={placeholder}
         className="h-11 w-full rounded-control border border-line bg-surface pl-11 pr-4 text-sm placeholder:text-muted/80 focus:border-ink"
       />
     </div>

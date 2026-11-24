@@ -2,7 +2,12 @@
 
 HunarCo is a platform where Pakistani fashion designers, artists, and craftspeople showcase original work. Buyers discover creators and register interest in designs. When a design reaches its interest threshold, HunarCo may coordinate production.
 
-This repository is the website for a student marketing project. It currently holds only the project foundation, not the full site.
+This repository is the website for a student marketing project. It is a frontend prototype: all creators, designs and accounts are fictional sample data, and nothing is connected to a backend yet.
+
+> **Demo sign-in only.** The login, buyer, creator and admin screens use a mock
+> that runs in the browser. It is not real authentication or security. See
+> [docs/demo-auth.md](docs/demo-auth.md) for the demo accounts and what a real
+> launch would need.
 
 ## Tech stack
 
@@ -36,7 +41,8 @@ On Windows PowerShell use `Copy-Item .env.example .env.local`.
 npm run dev
 ```
 
-Then open <http://localhost:3000>.
+Then open <http://localhost:3000>. To try the account areas, go to
+<http://localhost:3000/login> and press **Demo Buyer**, **Demo Creator** or **Demo Admin**.
 
 Other scripts:
 
